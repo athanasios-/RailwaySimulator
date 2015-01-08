@@ -10,39 +10,53 @@ class Train(object):
     classdocs
     '''
 
-    def __init__(self, speed, capacity, id):
+    def __init__(self, speed, capacity, name):
         '''
         Constructor
         '''
         self.speed = speed
-        self.capacity = capacity
-        self.id = id
-        self.cargo = []
+        self.__capacity = capacity
+        self.name = name
+        self.__cargo = []
     
-    def Cargo(self):
-        return self.cargo
+    def num_of_train_cargo(self):
+        return len(self.__cargo)
     
-    def Speed(self):
-        return self.speed
+    @property
+    def speed(self):
+        return self.__speed
     
-    def Capacity(self):
-        return self.capacity
+    @speed.setter
+    def speed(self,speed):
+        self.__speed = speed
     
-    def Id(self):
-        return self.id
+    @property
+    def available_capacity(self):
+        return  self.__capacity - self.num_of_train_cargo()
     
-    def Travel(self, station):
+    @property
+    def name(self):
+        return self.__name
+    
+    @name.setter
+    def name(self,name):
+        self.__name = name
+    
+    def travel(self, station):
         sleep(float(3/self.speed))
-        station.AddTrain(self)
+        station.dock_train(self)
     
-    def LoadCargo(self, cargo):
-        self.cargo.append(cargo)
-        cargo.Load()
+    def load_cargo(self, cargo):
+        if self.available_capacity > 0:
+            print ('loading cargo to %s' % cargo.destination.name)
+            self.__cargo.append(cargo)
+            cargo.load()
     
-    def UnloadCargo(self, station):
-        for c in self.cargo:
-            if c.Destination() is station:
-                self.cargo.remove(c)
-                c.Unload()
+    def unload_cargo(self, station):
+        for c in self.__cargo:
+            if c.destination is station:
+                print ('unloading cargo at %s' % station.name)
+                self.__cargo.remove(c)
+                c.unload()
             
         

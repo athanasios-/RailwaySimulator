@@ -10,18 +10,22 @@ class Cargo(object):
     classdocs
     '''
 
-
     def __init__(self, destination):
         '''
         Constructor
         '''
         self.destination = destination;
+        
+    @property
+    def destination(self):
+        return self.__destination
     
-    def Destination(self):
-        return self.destination
+    @destination.setter
+    def destination(self,destination):
+        self.__destination = destination
     
-    def Load(self):
+    def load(self):
         sleep(3)
     
-    def Unload(self):
+    def unload(self):
         sleep(3)
