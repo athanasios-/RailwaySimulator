@@ -42,9 +42,8 @@ class Train(object):
     def name(self,name):
         self.__name = name
     
-    def travel(self, station):
+    def travel(self):
         sleep(float(3/self.speed))
-        station.dock_train(self)
     
     def load_cargo(self, cargo):
         if self.available_capacity > 0:

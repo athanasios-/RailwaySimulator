@@ -39,12 +39,8 @@ class TrainTest(unittest.TestCase):
         
     def testTravelTime(self):
         startTime = time.time()
-        self.train.travel(self.mockStation)
+        self.train.travel()
         self.assertGreaterEqual(time.time() - startTime, float(3/self.train.speed))
-        
-    def testTravelArrivalToStation(self):
-        self.train.travel(self.mockStation)
-        self.assertEqual(1, len(self.mockStation.trains), '1 train arrived to station')
         
     def testLoadCargoLoadingTime(self):
         startTime = time.time()

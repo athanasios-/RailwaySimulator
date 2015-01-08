@@ -47,5 +47,6 @@ class TrackSegment(object):
     
     def _route(self):
         while self.__trains:
-            top = self.__trains.pop()
-            top.travel(self.__destinationStation)
+            top_train = self.__trains.pop()
+            top_train.travel()
+            self.__destinationStation.dock_train(top_train)
