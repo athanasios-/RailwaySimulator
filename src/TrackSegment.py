@@ -37,7 +37,7 @@ class TrackSegment(object):
         self.t1.start()
     
     def _loop_route(self):
-        while self.active:
+        while self.__active:
             self._route()
     
     def stop(self):
